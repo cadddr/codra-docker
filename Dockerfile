@@ -51,6 +51,9 @@ RUN rm tmp* && touch tmp_doc.prob
 # add test file and end-to-end parsing script
 ADD input.txt codra.sh /opt/codra-rst-parser/
 
+# so that parser model fits in memory
+RUN export _JAVA_OPTIONS="-Xmx2g"
+
 # by default, the container will parse the test file and produce its
 # RST tree in *.dis format
 ENTRYPOINT ["./codra.sh"]
